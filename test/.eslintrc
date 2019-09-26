@@ -1,0 +1,12 @@
+{
+  "globals": {
+    "fixture": false,
+    "test": false
+  },
+
+  "rules": {
+    "max-classes-per-file": "off",
+    "newline-per-chained-call": "off",
+    "prettier/prettier": "off"
+  }
+}

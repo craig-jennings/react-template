@@ -1,0 +1,26 @@
+{
+  "author": "Craig Jennings",
+  "background_color": "#FFFFFF",
+  "description": "React Template",
+  "display": "standalone",
+
+  "icons": [
+    {
+      "sizes": "192x192",
+      "src": "images/icon-192.png",
+      "type": "image/png"
+    },
+    {
+      "src": "images/icon-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+
+  "manifest_version": 2,
+  "name": "React Template",
+  "short_name": "React Template",
+  "start_url": "/",
+  "theme_color": "#29b6f6",
+  "version": 1
+}
