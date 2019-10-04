@@ -69,7 +69,7 @@ function Notification({ notification }) {
 
   return (
     <NotificationContainer
-      className="notification"
+      data-testid="notification"
       isEntering={isEntering}
       isError={isError}
       mt={2}

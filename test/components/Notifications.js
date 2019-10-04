@@ -1,12 +1,10 @@
-import { Selector } from 'testcafe';
+import { byTestId } from '../utils/TestComponent';
 
 class Notifications {
-  constructor() {
-    this.container = Selector('.notifications');
-  }
+  static get testId() { return 'notifications'; }
 
   get notifications() {
-    return this.container.find('.notification');
+    return this.container.find(byTestId('notification'));
   }
 }
 

@@ -18,6 +18,22 @@
     "sort-imports-es6-autofix"
   ],
 
+  "overrides": [
+    {
+      "env": {
+        "jest": true,
+      },
+
+      "files": [
+        "**/__tests__/*"
+      ],
+
+      "rules": {
+        "react/prop-types": "off"
+      }
+    }
+  ],
+
   "rules": {
     "class-methods-use-this": "off",
     "func-names": ["error", "as-needed"],

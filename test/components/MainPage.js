@@ -1,9 +1,7 @@
-import { Selector } from 'testcafe';
+import TestComponent from '../utils/TestComponent';
 
-class MainPage {
-  constructor() {
-    this.container = Selector('[data-testid=main-page]');
-  }
+class MainPage extends TestComponent {
+  static get testId() { return 'main-page'; }
 }
 
 export default MainPage;

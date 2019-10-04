@@ -28,7 +28,7 @@ function Notifications() {
 
   return (
     <NotificationContainer
-      className="notifications"
+      data-testid="notifications"
       flexDirection="column"
       justifyContent="flex-end"
     >
