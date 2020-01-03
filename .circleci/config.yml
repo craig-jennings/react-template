@@ -96,6 +96,10 @@ jobs:
           command: yarn test:eslint
 
       - run:
+          name: Jest
+          command: yarn test:jest
+
+      - run:
           name: E2E Tests
           command: yarn test:ci
 
@@ -112,3 +116,5 @@ jobs:
       - run:
           name: Build Production
           command: yarn build:prod
+          environment:
+            RELEASE: 'true'

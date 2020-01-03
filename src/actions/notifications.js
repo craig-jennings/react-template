@@ -1,23 +1,33 @@
+import { createAction } from '@reduxjs/toolkit';
+
 const NotificationActionType = {
   ADD_NOTIFICATION: 'notification:add',
   CLEAR_NOTIFICATIONS: 'notification:clear',
   REMOVE_NOTIFICATION: 'notification:remove',
 };
 
-/* --------------------- */
-/* -- Reducer Actions -- */
-/* --------------------- */
-const addNotification = (Component, props, isError = false) => ({
-  Component,
-  isError,
-  props,
-  type: NotificationActionType.ADD_NOTIFICATION,
-});
+/* -------------------- */
+/* -- Simple Actions -- */
+/* -------------------- */
+const addNotification = createAction(
+  NotificationActionType.ADD_NOTIFICATION,
+  (Component, props, isError = false) => ({
+    payload: {
+      Component,
+      isError,
+      props,
+      type: NotificationActionType.ADD_NOTIFICATION,
+    },
+  }),
+);
 
-const addSimpleNotification = (text, isError) => addNotification(null, { text }, isError);
+const addSimpleNotification = createAction(
+  NotificationActionType.ADD_NOTIFICATION,
+  (text, isError) => addNotification(null, { text }, isError),
+);
 
-const clearNotifications = () => ({ type: NotificationActionType.CLEAR_NOTIFICATIONS });
-const removeNotification = (key) => ({ key, type: NotificationActionType.REMOVE_NOTIFICATION });
+const clearNotifications = createAction(NotificationActionType.CLEAR_NOTIFICATIONS);
+const removeNotification = createAction(NotificationActionType.REMOVE_NOTIFICATION);
 
 export {
   addNotification,

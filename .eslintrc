@@ -5,11 +5,11 @@
 
   "extends": [
     "airbnb",
-    "prettier",
+    "prettier"
   ],
 
   "globals": {
-    "React": false,
+    "React": false
   },
 
   "plugins": [
@@ -21,7 +21,7 @@
   "overrides": [
     {
       "env": {
-        "jest": true,
+        "jest": true
       },
 
       "files": [
@@ -59,7 +59,7 @@
         "render",
         "/^handle.+$",
         "everything-else"
-      ],
+      ]
     }],
 
     "react-hooks/exhaustive-deps": "warn",
