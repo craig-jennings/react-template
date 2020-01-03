@@ -22,16 +22,9 @@ const GlobalStyles = createGlobalStyle`
   *::after,
   *::before {
     box-sizing: border-box;
+    font-family: var(--font-family);
     margin: 0;
     padding: 0;
-  }
-
-  body {
-    font-family: var(--font-family);
-  }
-
-  button {
-    font-family: var(--font-family);
   }
 
   svg {

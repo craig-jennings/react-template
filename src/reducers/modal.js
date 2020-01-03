@@ -1,27 +1,22 @@
+import { createReducer } from '@reduxjs/toolkit';
 import { ModalActionType } from '../actions/modal';
-import createReducer from '../utils/createReducer';
 
-const INITIAL_STATE = {
+const initialState = {
   Component: null,
   isEntering: false,
   isExiting: false,
 };
 
-const reducers = {
-  [ModalActionType.CLEAR_MODAL]: () => ({ ...INITIAL_STATE }),
+export default createReducer(initialState, {
+  [ModalActionType.CLEAR_MODAL]: () => ({ ...initialState }),
 
-  [ModalActionType.MODAL_EXIT]: (state) => ({
-    ...state,
-    isEntering: false,
-    isExiting: true,
-  }),
+  [ModalActionType.MODAL_EXIT]: (state) => {
+    state.isEntering = false;
+    state.isExiting = true;
+  },
 
   [ModalActionType.SET_MODAL]: (state, { Component }) => ({
     Component,
     isEntering: true,
   }),
-};
-
-const modalReducer = createReducer(reducers, INITIAL_STATE);
-
-export default modalReducer;
+});
