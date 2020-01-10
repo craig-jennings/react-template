@@ -1,77 +1,76 @@
-import spacing from './mixins/spacing';
-import styled, { css } from 'styled-components';
+import PropTypes from 'prop-types';
+import styled from 'styled-components';
 
 const Button = styled.button`
-  background-color: var(--neutral-bg-color, #cfd8dc);
+  background-color: var(--neutral);
   border-radius: 1rem;
   border-width: 0px;
-  font-family: var(--font-family, 'Arial');
+  color: var(--neutral-text);
   padding: 0.5rem 1rem;
   transition: all 0.25s;
 
-  ${({ isIconButton }) =>
-    isIconButton &&
-    css`
-      border-radius: 50%;
-      box-sizing: content-box;
-      height: 24px;
-      padding: 0.5rem;
-      width: 24px;
-    `};
-
-  ${spacing};
-
   :focus,
   :hover {
-    background-color: var(--neutral-bg-color--hover, #b0bec5);
+    background-color: var(--neutral--hover);
     cursor: pointer;
     outline: none;
   }
 
   :active {
-    background-color: var(--neutral-bg-color--active, #90a4ae);
+    background-color: var(--neutral--active);
+  }
+
+  &[disabled] {
+    cursor: not-allowed;
+    background-color: var(--neutral--disabled);
+    color: var(--neutral-text--disabled);
   }
 `;
 
 const PrimaryButton = styled(Button)`
-  background-color: var(--primary-bg-color, #1e88e5);
-  color: var(--primary-color, #fafafa);
+  background-color: var(--primary);
+  color: var(--primary-text);
 
   :focus,
   :hover {
-    background-color: var(--primary-bg-color--hover, #1976d2);
+    background-color: var(--primary--hover);
   }
 
   :active {
-    background-color: var(--primary-bg-color--active, #005cb2);
+    background-color: var(--primary--active);
+  }
+
+  &[disabled] {
+    background-color: var(--primary--disabled);
+    color: var(--primary-text--disabled);
   }
 `;
 
 const SecondaryButton = styled(Button)`
-  background-color: var(--secondary-color, #546e7a);
-  color: var(--secondary-text, #fafafa);
+  background-color: var(--secondary);
+  color: var(--secondary-text);
 
   :focus,
   :hover {
-    background-color: var(--secondary-color--hover, #819ca9);
+    background-color: var(--secondary--hover);
   }
 
   :active {
-    background-color: var(--secondary-color--active, #29434e);
+    background-color: var(--secondary--active);
   }
 `;
 
 const DangerButton = styled(Button)`
-  background-color: var(--danger-bg-color, #ef5350);
-  color: var(--danger-color, #222222);
+  background-color: var(--danger);
+  color: var(--danger-text);
 
   :focus,
   :hover {
-    background-color: var(--danger-bg-color--hover, #b71c1c);
+    background-color: var(--danger--hover);
   }
 
   :active {
-    background-color: var(--danger-bg-color--active, #e53935);
+    background-color: var(--danger--active);
   }
 `;
 
@@ -97,9 +96,25 @@ const IconButton = styled(UnstyledButton)`
   transition-property: color;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   width: ${({ width }) => width || '24px'};
+  z-index: 1;
 
   ::before {
-    background-color: var(--neutral-bg-color--hover);
+    background-color: ${({ variant }) => {
+      switch (variant) {
+        case 'primary':
+          return 'var(--primary--hover)';
+
+        case 'secondary':
+          return 'var(--secondary--hover)';
+
+        case 'danger':
+          return 'var(--danger--hover)';
+
+        default:
+          return 'var(--neutral--hover)';
+      }
+    }};
+
     border-radius: 50%;
     bottom: 0;
     content: '';
@@ -112,15 +127,20 @@ const IconButton = styled(UnstyledButton)`
     transition-duration: 0.15s;
     transition-property: opacity, transform;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: -1;
   }
 
   :focus,
   :hover {
     ::before {
-      opacity: 0.35;
+      opacity: 1;
       transform: scale(1.5);
     }
   }
 `;
+
+IconButton.propTypes = {
+  variant: PropTypes.oneOf(['primary', 'secondary', 'danger']),
+};
 
 export { Button, DangerButton, IconButton, PrimaryButton, SecondaryButton, UnstyledButton };

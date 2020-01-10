@@ -1,27 +1,10 @@
+import { a, useSpring } from 'react-spring';
 import { Box } from './Box';
 import PropTypes from 'prop-types';
-import styled, { css, keyframes } from 'styled-components';
+import styled from 'styled-components';
 
-const enter = keyframes`
-  from {
-    opacity: 0;
-    transform: translateY(50px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-`;
-
-const Card = styled(Box)`
-  animation: ${(props) =>
-    props.animate &&
-    css`
-      ${enter} .3s ease-out
-    `};
-
-  background-color: var(--default-bg-color, #ffffff);
+const CardBox = styled(Box)`
+  background-color: var(--default);
   border-radius: 0.5rem;
 
   box-shadow: var(
@@ -34,8 +17,36 @@ const Card = styled(Box)`
   overflow: hidden;
 `;
 
+function Card({ animate, children, ...props }) {
+  const style = useSpring({
+    config: {
+      friction: 30,
+      tension: 300,
+    },
+
+    from: {
+      opacity: 0,
+      transform: 'translateY(50px)',
+    },
+
+    to: {
+      opacity: 1,
+      transform: 'translateY(0)',
+    },
+  });
+
+  return animate ? (
+    <a.div style={style}>
+      <CardBox {...props}>{children}</CardBox>
+    </a.div>
+  ) : (
+    <CardBox>{children}</CardBox>
+  );
+}
+
 Card.propTypes = {
   animate: PropTypes.bool,
+  children: PropTypes.node,
 };
 
 export default Card;

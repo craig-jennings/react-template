@@ -4,9 +4,16 @@
     "test": false
   },
 
+  "extends": [
+    "airbnb"
+  ],
+
   "rules": {
+    "import/no-extraneous-dependencies": "off",
+    "import/prefer-default-export": "off",
     "max-classes-per-file": "off",
     "newline-per-chained-call": "off",
+    "no-plusplus": "off",
     "prettier/prettier": "off"
   }
 }

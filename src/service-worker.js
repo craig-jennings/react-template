@@ -6,7 +6,7 @@ const CacheTimes = {
 };
 
 workbox.core.setCacheNameDetails({
-  prefix: 'react-template',
+  prefix: 'recipe-book',
 });
 
 workbox.precaching.cleanupOutdatedCaches();

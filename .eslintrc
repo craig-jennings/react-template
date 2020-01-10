@@ -25,11 +25,21 @@
       },
 
       "files": [
-        "**/__tests__/*"
+        "**/__mocks__/**/*.js",
+        "**/__tests__/**/*.test.js"
       ],
 
       "rules": {
+        "import/named": "off",
         "react/prop-types": "off"
+      },
+
+      "settings": {
+        "import/resolver": {
+          "jest": {
+            "jestConfigFile": "./jest.config.js"
+          }
+        }
       }
     }
   ],
@@ -37,6 +47,7 @@
   "rules": {
     "class-methods-use-this": "off",
     "func-names": ["error", "as-needed"],
+    "import/extensions": "off",
     "import/first": ["error", { "absolute-first": false }],
     "import/no-unresolved": "off",
     "import/order": "off",
@@ -69,6 +80,7 @@
     "react/jsx-props-no-spreading": "off",
     "react/no-unused-state": "off",
     "react/react-in-jsx-scope": "off",
+    "react/require-default-props": "off",
 
     "sort-imports-es6-autofix/sort-imports-es6": ["error", {
       "ignoreCase": true,
