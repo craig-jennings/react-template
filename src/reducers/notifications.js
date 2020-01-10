@@ -1,29 +1,24 @@
 import { createReducer } from '@reduxjs/toolkit';
 import { NotificationActionType } from '../actions/notifications';
 
-const initialState = [];
+const INITIAL_STATE = [];
 const MAX_NOTIFICATIONS = 3;
-let keyCounter = 0;
 
-export default createReducer(initialState, {
-  [NotificationActionType.ADD_NOTIFICATION]: (
-    state,
-    { payload: { Component, isError, props } },
-  ) => {
-    if (state.length === MAX_NOTIFICATIONS) {
-      state = state.pop();
+export default createReducer(INITIAL_STATE, {
+  [NotificationActionType.ADD]: (draft, { payload: { contents, key, notificationType } }) => {
+    if (draft.length === MAX_NOTIFICATIONS) {
+      draft.pop();
     }
 
-    state.unshift({
-      Component,
-      isError,
-      key: ++keyCounter,
-      props,
+    draft.unshift({
+      contents,
+      key,
+      notificationType,
     });
   },
 
-  [NotificationActionType.CLEAR_NOTIFICATIONS]: () => [],
+  [NotificationActionType.CLEAR]: () => [],
 
-  [NotificationActionType.REMOVE_NOTIFICATION]: (state, { payload: { key } }) =>
-    state.filter((n) => n.key !== key),
+  [NotificationActionType.REMOVE]: (draft, { payload: { key } }) =>
+    draft.filter((n) => n.key !== key),
 });

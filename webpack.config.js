@@ -3,7 +3,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
 
-module.exports = (env = {}) => ({
+module.exports = {
   devServer: {
     contentBase: './dist',
     historyApiFallback: true,
@@ -73,7 +73,7 @@ module.exports = (env = {}) => ({
     }),
 
     new InjectManifest({
-      swSrc: './src/service-worker/service-worker.js',
+      swSrc: './src/service-worker.js',
     }),
 
     new webpack.ProvidePlugin({
@@ -96,4 +96,4 @@ module.exports = (env = {}) => ({
     hash: false,
     modules: false,
   },
-});
+};
