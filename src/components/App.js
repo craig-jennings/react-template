@@ -1,6 +1,5 @@
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { Home, Page404 } from '../pages';
-import { hot } from 'react-hot-loader/root';
 import Notifications from './notifications/Notifications';
 
 function App() {
@@ -21,4 +20,4 @@ function App() {
   );
 }
 
-export default hot(App);
+export default App;

@@ -117,4 +117,4 @@ jobs:
           name: Build Production
           command: yarn build:prod
           environment:
-            RELEASE: 'true'
+            NODE_ENV: 'production'

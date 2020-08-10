@@ -1,24 +1,21 @@
 module.exports = (api) => {
-  const isRelease = process.env.RELEASE === 'true';
+  const isRelease = process.env.NODE_ENV === 'production';
   const isTest = api.env('test');
+
+  api.cache.using(() => process.env.NODE_ENV);
 
   if (isTest) {
     return {
-      presets: [
-        [
-          '@babel/preset-env',
-          {
-            targets: { node: 'current' },
-          },
-        ],
-
-        '@babel/preset-react',
-      ],
+      presets: [['@babel/preset-env', { targets: { node: 'current' } }], '@babel/preset-react'],
     };
   }
 
   const config = {
-    plugins: [['babel-plugin-styled-components', { fileName: false }], 'react-hot-loader/babel'],
+    plugins: [
+      ['babel-plugin-styled-components', { fileName: false }],
+      !api.env('production') && 'react-refresh/babel',
+    ],
+
     presets: ['@babel/preset-react'],
   };
 
