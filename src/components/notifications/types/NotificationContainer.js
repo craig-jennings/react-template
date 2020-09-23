@@ -3,8 +3,8 @@ import styled from 'styled-components';
 
 const NotificationContainer = styled(FlexBox)`
   border-radius: 0.5rem;
-  height: 56px;
   margin-top: 0.5rem;
+  min-height: 56px;
   overflow: hidden;
   width: 100%;
 `;

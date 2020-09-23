@@ -1,8 +1,7 @@
 import { appUrl } from '../utils/roots';
-import Home from '../components/Home';
+import home from '../components/Home';
 import Notifications from '../components/Notifications';
 
-const home = new Home();
 const notifications = new Notifications();
 
 fixture('Home Page').page(appUrl);

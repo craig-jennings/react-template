@@ -16,6 +16,7 @@ module.exports = {
 
   devtool: 'cheap-source-map',
   entry: './src/index.js',
+  mode: isDevelopment ? 'development' : 'production',
 
   module: {
     rules: [
@@ -84,15 +85,14 @@ module.exports = {
       React: 'react',
     }),
 
+    isDevelopment && new webpack.HotModuleReplacementPlugin(),
     isDevelopment && new ReactRefreshWebpackPlugin(),
   ].filter(Boolean),
 
   stats: {
     builtAt: false,
     entrypoints: false,
-
     excludeAssets: [/images[/\\]/, /precache-manifest\./, /robots\.txt/],
-
     hash: false,
     modules: false,
   },

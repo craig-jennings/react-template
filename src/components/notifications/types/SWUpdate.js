@@ -1,11 +1,10 @@
+import { Box, FlexBox } from '../../base/Box';
 import { Button, IconButton } from '../../base/Buttons';
 import { CloseIcon } from '../../base/Icons';
-import { FlexBox } from '../../base/Box';
-import NotificationContainer from './NotificationContainer';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-const Container = styled(NotificationContainer)`
+const Container = styled(Box)`
   background-color: var(--neutral);
   color: var(--neutral-text);
 `;
@@ -20,7 +19,12 @@ function SWUpdate({ onDismiss }) {
 
   return (
     <Container alignItems="center" justifyContent="space-between" px={3}>
-      <div>Update Available</div>
+      <div>
+        <div>Update Available</div>
+        <div>Update Available</div>
+        <div>Update Available</div>
+        <div>Update Available</div>
+      </div>
 
       <FlexBox alignItems="center">
         <RefreshButton onClick={handleRefreshClick}>Refresh?</RefreshButton>

@@ -1,7 +1,9 @@
 import { animated, useTransition } from 'react-spring';
 import { FlexBox } from '../base/Box';
 import { useSelector } from 'react-redux';
+import { useState } from 'react';
 import Notification from './Notification';
+import NotificationContainer from './types/NotificationContainer';
 import styled from 'styled-components';
 
 const NotificationsContainer = styled(FlexBox)`
@@ -21,6 +23,7 @@ const NotificationsContainer = styled(FlexBox)`
 function Notifications() {
   /* -- Hooks -- */
   const notifications = useSelector((state) => state.notifications);
+  const [refMap] = useState(() => new WeakMap());
 
   const animatedNotifications = useTransition(notifications, (n) => n.key, {
     config: {
@@ -29,10 +32,12 @@ function Notifications() {
       tension: 300,
     },
 
-    enter: {
-      height: 64,
-      opacity: 1,
-      transform: 'translateY(0)',
+    enter: (item) => async (next) => {
+      await next({
+        height: refMap.get(item).offsetHeight,
+        opacity: 1,
+        transform: 'translateY(0)',
+      });
     },
 
     from: {
@@ -49,7 +54,9 @@ function Notifications() {
 
   const mappedNotifications = animatedNotifications.map(({ item, key, props }) => (
     <animated.div key={key} style={props} data-testid="notification">
-      <Notification notification={item} />
+      <NotificationContainer ref={(ref) => ref && refMap.set(item, ref)}>
+        <Notification notification={item} />
+      </NotificationContainer>
     </animated.div>
   ));
 

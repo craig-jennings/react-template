@@ -18,4 +18,4 @@ class Home extends TestComponent {
   }
 }
 
-export default Home;
+export default new Home();
