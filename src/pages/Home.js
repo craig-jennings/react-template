@@ -1,36 +1,42 @@
-import { addNotification, NotificationType } from '../actions/notifications';
 import { Button } from '../components/base/Buttons';
 import { FlexBox, InlineBox } from '../components/base/Box';
-import { useDispatch } from 'react-redux';
+import { useNotificationActionsContext } from '../contexts/NotificationContext';
+import StandardNotification from '../components/notifications/StandardNotification';
+import SWUpdate from '../components/notifications/types/SWUpdate';
 
 function Home() {
-  const dispatch = useDispatch();
+  /* -- Hooks -- */
+  const { addNotification } = useNotificationActionsContext();
 
+  /* -- Event Handlers -- */
+  const handleErrorClick = () => {
+    addNotification(<StandardNotification variant="error">Error</StandardNotification>);
+  };
+
+  const handleSuccessClick = () => {
+    addNotification(<StandardNotification variant="success">Success</StandardNotification>);
+  };
+
+  const handleServiceWorkerClick = () => {
+    addNotification(<SWUpdate />);
+  };
+
+  /* -- Rendering -- */
   return (
     <FlexBox alignItems="center" data-testid="home-page" flexDirection="column">
       <div>Howdy React Template!</div>
 
       <div>
         <InlineBox mr={2}>
-          <Button
-            onClick={() => dispatch(addNotification(NotificationType.SUCCESS, { text: 'Success' }))}
-          >
-            Success
-          </Button>
+          <Button onClick={handleSuccessClick}>Success</Button>
         </InlineBox>
 
         <InlineBox mr={2}>
-          <Button
-            onClick={() => dispatch(addNotification(NotificationType.ERROR, { text: 'Error' }))}
-          >
-            Error
-          </Button>
+          <Button onClick={handleErrorClick}>Error</Button>
         </InlineBox>
 
         <InlineBox>
-          <Button onClick={() => dispatch(addNotification(NotificationType.SERVICE_WORKER))}>
-            Service Worker
-          </Button>
+          <Button onClick={handleServiceWorkerClick}>Service Worker</Button>
         </InlineBox>
       </div>
     </FlexBox>

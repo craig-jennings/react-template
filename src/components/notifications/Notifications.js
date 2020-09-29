@@ -1,29 +1,38 @@
 import { animated, useTransition } from 'react-spring';
-import { FlexBox } from '../base/Box';
-import { useSelector } from 'react-redux';
+import { Box, FlexBox } from '../base/Box';
+import {
+  useNotificationActionsContext,
+  useNotificationStateContext,
+} from '../../contexts/NotificationContext';
 import { useState } from 'react';
-import Notification from './Notification';
-import NotificationContainer from './types/NotificationContainer';
 import styled from 'styled-components';
 
 const NotificationsContainer = styled(FlexBox)`
   bottom: 1rem;
+  display: grid;
   left: 1.5rem;
   position: fixed;
   right: 1.5rem;
   z-index: 100;
 
   @media screen and (min-width: 768px) {
+    grid-template-columns: 300px;
     left: 2rem;
     right: unset;
     width: 300px;
   }
 `;
 
+const NotificationContainer = styled(Box)`
+  overflow: hidden;
+  width: 100%;
+`;
+
 function Notifications() {
   /* -- Hooks -- */
-  const notifications = useSelector((state) => state.notifications);
   const [refMap] = useState(() => new WeakMap());
+  const { removeNotification } = useNotificationActionsContext();
+  const notifications = useNotificationStateContext();
 
   const animatedNotifications = useTransition(notifications, (n) => n.key, {
     config: {
@@ -36,14 +45,12 @@ function Notifications() {
       await next({
         height: refMap.get(item).offsetHeight,
         opacity: 1,
-        transform: 'translateY(0)',
       });
     },
 
     from: {
       height: 0,
       opacity: 0,
-      transform: 'translateY(200px)',
     },
 
     leave: () => async (next) => {
@@ -52,10 +59,14 @@ function Notifications() {
     },
   });
 
+  /* -- Rendering -- */
   const mappedNotifications = animatedNotifications.map(({ item, key, props }) => (
-    <animated.div key={key} style={props} data-testid="notification">
-      <NotificationContainer ref={(ref) => ref && refMap.set(item, ref)}>
-        <Notification notification={item} />
+    <animated.div data-testid="notification" key={key} style={props}>
+      <NotificationContainer
+        onClick={() => removeNotification(item.key)}
+        ref={(ref) => ref && refMap.set(item, ref)}
+      >
+        {item.content}
       </NotificationContainer>
     </animated.div>
   ));

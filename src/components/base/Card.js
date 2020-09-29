@@ -1,6 +1,5 @@
 import { a, useSpring } from 'react-spring';
 import { Box } from './Box';
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const CardBox = styled(Box)`

@@ -1,10 +1,9 @@
-import { Box, FlexBox } from '../../base/Box';
-import { Button, IconButton } from '../../base/Buttons';
-import { CloseIcon } from '../../base/Icons';
-import PropTypes from 'prop-types';
+import { Button } from '../../base/Buttons';
+import { FlexBox } from '../../base/Box';
+import NotificationContainer from '../NotificationContainer';
 import styled from 'styled-components';
 
-const Container = styled(Box)`
+const Container = styled(NotificationContainer)`
   background-color: var(--neutral);
   color: var(--neutral-text);
 `;
@@ -14,31 +13,25 @@ const RefreshButton = styled(Button)`
   padding: 0.5rem 0.75rem;
 `;
 
-function SWUpdate({ onDismiss }) {
-  const handleRefreshClick = () => window.location.reload();
+function SWUpdate() {
+  /* -- Hooks -- */
+  /* -- Event Handlers -- */
+  const handleRefreshClick = (e) => {
+    e.stopPropagation();
 
+    window.location.reload();
+  };
+
+  /* -- Rendering -- */
   return (
     <Container alignItems="center" justifyContent="space-between" px={3}>
-      <div>
-        <div>Update Available</div>
-        <div>Update Available</div>
-        <div>Update Available</div>
-        <div>Update Available</div>
-      </div>
+      <div>Update Available</div>
 
       <FlexBox alignItems="center">
         <RefreshButton onClick={handleRefreshClick}>Refresh?</RefreshButton>
-
-        <IconButton onClick={onDismiss}>
-          <CloseIcon />
-        </IconButton>
       </FlexBox>
     </Container>
   );
 }
-
-SWUpdate.propTypes = {
-  onDismiss: PropTypes.func.isRequired,
-};
 
 export default SWUpdate;

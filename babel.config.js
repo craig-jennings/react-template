@@ -4,7 +4,10 @@ module.exports = (api) => {
 
   if (isTest) {
     return {
-      presets: [['@babel/preset-env', { targets: { node: 'current' } }], '@babel/preset-react'],
+      presets: [
+        ['@babel/preset-env', { targets: { node: 'current' } }],
+        ['@babel/preset-react', { runtime: 'automatic' }],
+      ],
     };
   }
 
@@ -14,14 +17,7 @@ module.exports = (api) => {
       !isProd && 'react-refresh/babel',
     ].filter(Boolean),
 
-    presets: [
-      [
-        '@babel/preset-react',
-        {
-          runtime: 'automatic',
-        },
-      ],
-    ],
+    presets: [['@babel/preset-react', { runtime: 'automatic' }]],
   };
 
   if (isProd) {

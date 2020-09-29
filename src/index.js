@@ -1,16 +1,15 @@
-import { Provider } from 'react-redux';
+import { NotificationProvider } from './contexts/NotificationContext';
 import App from './components/App';
 import GlobalStyles from './components/GlobalStyles';
 import ReactDOM from 'react-dom';
-import store from './store';
 import SWInstaller from './components/SWInstaller';
 
 const Root = () => (
-  <Provider store={store}>
+  <NotificationProvider>
     <GlobalStyles />
     <App />
     <SWInstaller />
-  </Provider>
+  </NotificationProvider>
 );
 
 ReactDOM.render(<Root />, document.querySelector('main'));

@@ -82,7 +82,7 @@ module.exports = {
     }),
 
     new webpack.ProvidePlugin({
-      React: 'react',
+      PropTypes: 'prop-types',
     }),
 
     isDevelopment && new webpack.HotModuleReplacementPlugin(),
