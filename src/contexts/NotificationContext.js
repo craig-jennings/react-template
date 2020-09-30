@@ -1,5 +1,5 @@
 import { createContext, useContext, useMemo, useReducer } from 'react';
-import { nanoid } from '@reduxjs/toolkit';
+import { nanoid } from 'nanoid/non-secure';
 
 const MAX_NOTIFICATIONS = 3;
 const NotificationStateContext = createContext(null);
