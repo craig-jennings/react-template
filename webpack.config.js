@@ -4,7 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const webpack = require('webpack');
 
-const isDevelopment = process.env.NODE_ENV !== 'production';
+const isDev = process.env.NODE_ENV !== 'production';
 
 module.exports = {
   devServer: {
@@ -16,7 +16,7 @@ module.exports = {
 
   devtool: 'cheap-source-map',
   entry: './src/index.js',
-  mode: isDevelopment ? 'development' : 'production',
+  mode: isDev ? 'development' : 'production',
 
   module: {
     rules: [
@@ -85,8 +85,8 @@ module.exports = {
       PropTypes: 'prop-types',
     }),
 
-    isDevelopment && new webpack.HotModuleReplacementPlugin(),
-    isDevelopment && new ReactRefreshWebpackPlugin(),
+    isDev && new webpack.HotModuleReplacementPlugin(),
+    isDev && new ReactRefreshWebpackPlugin(),
   ].filter(Boolean),
 
   stats: {

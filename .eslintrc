@@ -12,6 +12,10 @@
     "PropTypes": false
   },
 
+  "parserOptions": {
+    "ecmaVersion": 2020
+  },
+
   "plugins": [
     "prettier",
     "react-hooks",
