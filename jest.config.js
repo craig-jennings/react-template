@@ -1,8 +1,22 @@
-const path = require('path');
+const tsConfig = require('./tsconfig.json');
+
+function generateModuleNameMapper() {
+  const { paths } = tsConfig.compilerOptions;
+  const aliases = {};
+
+  Object.entries(paths).forEach(([key, value]) => {
+    const alias = key.replace('/*', '/(.*)');
+    const path = value[0].replace('/*', '/$1').replace('./', '<rootDir>/');
+
+    aliases[alias] = path;
+  });
+
+  return aliases;
+}
 
 module.exports = {
-  moduleDirectories: ['node_modules', path.join(__dirname, 'src/test')],
-  setupFiles: [path.join(__dirname, 'src/test/setup.js')],
+  moduleNameMapper: generateModuleNameMapper(),
+  preset: 'ts-jest',
   testEnvironment: 'jsdom',
-  testMatch: ['**/__tests__/**/*.test.js'],
+  testMatch: ['**/__tests__/**/*.test.ts(x)'],
 };

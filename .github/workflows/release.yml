@@ -16,9 +16,12 @@ jobs:
         run: yarn --frozen-lockfile
 
       - name: Build
-        run: yarn build:prod
+        run: yarn build
         env:
           RELEASE: true
 
       # - name: Deploy
-      #   run: ?
+      #   run: netlify deploy --dir dist --prod --message "Deployment of $GITHUB_REF"
+      #   env:
+      #     NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+      #     NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}

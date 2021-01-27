@@ -1,28 +1,14 @@
 module.exports = (api) => {
-  const isProd = process.env.NODE_ENV === 'production';
-  const isRelease = process.env.RELEASE === 'true';
-  const isTest = api.env('test');
+  api.cache(true);
 
-  if (isTest) {
-    return {
-      presets: [
-        ['@babel/preset-env', { targets: { node: 'current' } }],
-        ['@babel/preset-react', { runtime: 'automatic' }],
-      ],
-    };
-  }
+  const isRelease = process.env.RELEASE === 'true';
 
   const config = {
-    plugins: [
-      ['babel-plugin-styled-components', { fileName: false }],
-      !isProd && 'react-refresh/babel',
-    ].filter(Boolean),
-
-    presets: [['@babel/preset-react', { runtime: 'automatic' }]],
+    plugins: [['babel-plugin-styled-components', { fileName: false }]],
+    presets: ['@babel/preset-typescript', ['@babel/preset-react', { runtime: 'automatic' }]],
   };
 
   if (isRelease) {
-    config.plugins.push('transform-react-remove-prop-types');
     config.plugins.push(['react-remove-properties', { properties: ['data-testid'] }]);
   }
 
