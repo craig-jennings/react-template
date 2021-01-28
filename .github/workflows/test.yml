@@ -23,7 +23,10 @@ jobs:
         run: yarn build
 
       - name: ESLint
-        run: yarn test
+        run: yarn test:eslint
+
+      - name: Jest
+        run: yarn test:jest
 
       - name: E2E Tests
         run: yarn ci
