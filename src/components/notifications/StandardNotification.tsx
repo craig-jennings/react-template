@@ -32,15 +32,9 @@ interface StandardNotificationProps {
   variant?: 'error' | 'success';
 }
 
-const StandardNotification = ({ children, variant }: StandardNotificationProps) => {
-  /* -- Hooks -- */
-  /* -- Event Handlers -- */
-  /* -- Rendering -- */
-  return (
-    <Container alignItems="center" justifyContent="space-between" px={3} variant={variant}>
-      {children}
-    </Container>
-  );
-};
-
+const StandardNotification = ({ children, variant }: StandardNotificationProps) => (
+  <Container alignItems="center" justifyContent="space-between" px={3} variant={variant}>
+    {children}
+  </Container>
+);
 export default StandardNotification;

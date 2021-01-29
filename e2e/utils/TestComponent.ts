@@ -10,7 +10,7 @@ abstract class TestComponent {
 
   constructor(testId: string) {
     this.container = getSelectorByTestId(testId);
-    this.testId = testId
+    this.testId = testId;
   }
 }
 
