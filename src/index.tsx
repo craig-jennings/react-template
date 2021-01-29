@@ -1,4 +1,3 @@
-import { NotificationProvider } from './contexts/NotificationContext';
 import App from './components/App';
 import GlobalStyles from './components/GlobalStyles';
 import Providers from './components/Providers';

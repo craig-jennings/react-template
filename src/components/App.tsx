@@ -1,16 +1,21 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { Home, Page404 } from '@pages/index';
+import { lazy, Suspense } from 'react';
 import Notifications from './notifications/Notifications';
+
+const Home = lazy(() => import('@pages/Home'));
+const Page404 = lazy(() => import('@pages/Page404'));
 
 function App() {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="*" element={<Page404 />} />
-      </Routes>
+      <Suspense fallback={<div>Loading</div>}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="*" element={<Page404 />} />
+        </Routes>
 
-      <Notifications />
+        <Notifications />
+      </Suspense>
     </BrowserRouter>
   );
 }

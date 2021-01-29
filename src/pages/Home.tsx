@@ -1,5 +1,6 @@
 import { Button } from '@common/Buttons';
-import { FlexBox, InlineBox } from '@common/Box';
+import { CenterBox, FlexBox, InlineBox } from '@common/Box';
+import { Link } from 'react-router-dom';
 import { useNotificationActionsContext } from '@contexts/NotificationContext';
 import StandardNotification from '@components/notifications/StandardNotification';
 import SWUpdate from '@components/notifications/types/SWUpdate';
@@ -39,6 +40,10 @@ function Home() {
           <Button onClick={handleServiceWorkerClick}>Service Worker</Button>
         </InlineBox>
       </div>
+
+      <CenterBox>
+        <Link to="unknown">Go to nowhere!</Link>
+      </CenterBox>
     </FlexBox>
   );
 }
