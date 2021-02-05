@@ -74,4 +74,4 @@ type SpacingProps = {
 };
 
 export default spacing;
-export { SpacingKeys, SpacingProps, SpacingValues };
+export { SpacingProps };

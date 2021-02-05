@@ -1,15 +1,14 @@
-import display, { Display } from './mixins/display';
-import flex, { FlexProperties } from './mixins/flex';
-import position, { Position } from './mixins/position';
-import spacing, { SpacingKeys, SpacingValues } from './mixins/spacing';
+import display, { DisplayProps } from './mixins/display';
+import flex, { FlexProps } from './mixins/flex';
+import position, { PositionProps } from './mixins/position';
+import spacing, { SpacingProps } from './mixins/spacing';
 import styled from 'styled-components';
 
 type BoxProps = {
-  [x in SpacingKeys]?: string | SpacingValues;
-} & {
-  displayRaw?: Display;
-  position?: Position;
-} & FlexProperties;
+  displayRaw?: DisplayProps;
+  position?: PositionProps;
+} & FlexProps &
+  SpacingProps;
 
 const Box = styled.div<BoxProps>`
   ${display}

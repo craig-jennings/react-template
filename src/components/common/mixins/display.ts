@@ -1,4 +1,4 @@
-type Display =
+type DisplayProps =
   /* <display-outside> values */
   | 'block'
   | 'inline'
@@ -35,9 +35,9 @@ type Display =
   | 'initial'
   | 'unset';
 
-function display({ displayRaw }: { displayRaw?: Display }) {
+function display({ displayRaw }: { displayRaw?: DisplayProps }) {
   return displayRaw && { display: displayRaw };
 }
 
 export default display;
-export { Display };
+export { DisplayProps };

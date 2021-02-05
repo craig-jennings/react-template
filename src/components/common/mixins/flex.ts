@@ -47,7 +47,7 @@ type JustifyContent =
   | 'stretch'
   | GlobalValues;
 
-interface FlexProperties {
+interface FlexProps {
   alignContent?: AlignContent;
   alignItems?: AlignItems;
   flex?: string;
@@ -78,4 +78,4 @@ function flex(props: any): { [x: string]: any } | null {
 }
 
 export default flex;
-export { FlexProperties };
+export { FlexProps };
