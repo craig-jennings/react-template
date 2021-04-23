@@ -62,7 +62,7 @@ const GlobalStyles = createGlobalStyle`
   *::after,
   *::before {
     box-sizing: border-box;
-    font-family: var(--font-family);
+    font-family: var(--font-family--body);
     margin: 0;
     padding: 0;
   }

@@ -25,6 +25,9 @@ jobs:
       - name: ESLint
         run: yarn test:eslint
 
+      - name: Typescript
+        run: yarn test:typescript
+
       - name: Jest
         run: yarn test:jest
 

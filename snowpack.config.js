@@ -26,7 +26,7 @@ module.exports = {
   optimize: {
     bundle: true,
     minify: true,
-    // splitting: true,
+    splitting: true,
     target: 'es2018',
   },
 
@@ -35,5 +35,12 @@ module.exports = {
   },
 
   plugins: ['@snowpack/plugin-babel', '@snowpack/plugin-react-refresh'],
-  routes: [{ match: 'routes', src: '.*', dest: '/index.html' }],
+
+  routes: [
+    {
+      dest: '/index.html',
+      match: 'routes',
+      src: '.*',
+    },
+  ],
 };
