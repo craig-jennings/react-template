@@ -1,3 +1,4 @@
+import { PropsWithChildren } from 'react';
 import NotificationContainer from './NotificationContainer';
 import styled, { css } from 'styled-components';
 
@@ -28,11 +29,13 @@ const Container = styled(NotificationContainer)<{ variant?: 'error' | 'success' 
 `;
 
 interface StandardNotificationProps {
-  children: React.ReactNode;
   variant?: 'error' | 'success';
 }
 
-const StandardNotification = ({ children, variant }: StandardNotificationProps) => (
+const StandardNotification = ({
+  children,
+  variant,
+}: PropsWithChildren<StandardNotificationProps>) => (
   <Container alignItems="center" justifyContent="space-between" px={3} variant={variant}>
     {children}
   </Container>
