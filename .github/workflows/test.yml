@@ -1,4 +1,4 @@
-name: Test
+name: Tests
 
 on:
   pull_request:
@@ -10,26 +10,85 @@ on:
       - master
 
 jobs:
-  build:
+  e2e:
+    name: E2E Tests
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v2
 
-      - name: Yarn Install
+      - uses: actions/cache@v2
+        id: cache
+        with:
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+          path: '**/node_modules'
+
+      - name: Install Dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
         run: yarn --frozen-lockfile
 
       - name: Build
         run: yarn build
 
+      - name: E2E Tests
+        run: yarn ci
+
+  eslint:
+    name: ESLint
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/cache@v2
+        id: cache
+        with:
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+          path: '**/node_modules'
+
+      - name: Install Dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: yarn --frozen-lockfile
+
       - name: ESLint
         run: yarn test:eslint
 
-      - name: Typescript
-        run: yarn test:typescript
+  jest:
+    name: Jest
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/cache@v2
+        id: cache
+        with:
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+          path: '**/node_modules'
+
+      - name: Install Dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: yarn --frozen-lockfile
 
       - name: Jest
         run: yarn test:jest
 
-      - name: E2E Tests
-        run: yarn ci
+  typecheck:
+    name: Type Checking
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/cache@v2
+        id: cache
+        with:
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+          path: '**/node_modules'
+
+      - name: Install Dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: yarn --frozen-lockfile
+
+      - name: Typescript
+        run: yarn test:typescript
