@@ -1,11 +1,9 @@
+import { addToast } from '@utils/toaster';
 import { useEffect } from 'react';
-import { useNotificationActionsContext } from '@contexts/NotificationContext';
 import { Workbox } from 'workbox-window';
 import SWUpdate from './notifications/types/SWUpdate';
 
 function SWInstaller() {
-  const { addNotification } = useNotificationActionsContext();
-
   useEffect(() => {
     if (process.env.NODE_ENV !== 'production') return;
 
@@ -25,12 +23,12 @@ function SWInstaller() {
           wb.messageSkipWaiting();
         };
 
-        addNotification(<SWUpdate onUpdateClick={onUpdateClick} />);
+        addToast(<SWUpdate onUpdateClick={onUpdateClick} />);
       });
 
       wb.register();
     }
-  }, [addNotification]);
+  }, []);
 
   return null;
 }

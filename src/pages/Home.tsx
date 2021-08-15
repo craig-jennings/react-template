@@ -1,25 +1,23 @@
+import { addToast } from '@utils/toaster';
 import { Button } from '@common/Buttons';
 import { CenterBox, FlexBox, InlineBox } from '@common/Box';
 import { Link } from 'react-router-dom';
-import { useNotificationActionsContext } from '@contexts/NotificationContext';
 import StandardNotification from '@components/notifications/StandardNotification';
 import SWUpdate from '@components/notifications/types/SWUpdate';
 
 function Home() {
   /* -- Hooks -- */
-  const { addNotification } = useNotificationActionsContext();
-
   /* -- Event Handlers -- */
   const handleErrorClick = () => {
-    addNotification(<StandardNotification variant="error">Error</StandardNotification>);
+    addToast(<StandardNotification variant="error">Error</StandardNotification>);
   };
 
   const handleSuccessClick = () => {
-    addNotification(<StandardNotification variant="success">Success</StandardNotification>);
+    addToast(<StandardNotification variant="success">Success</StandardNotification>);
   };
 
   const handleServiceWorkerClick = () => {
-    addNotification(<SWUpdate onUpdateClick={() => {}} />);
+    addToast(<SWUpdate onUpdateClick={() => {}} />, { isDismissable: false });
   };
 
   /* -- Rendering -- */

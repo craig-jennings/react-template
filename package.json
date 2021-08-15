@@ -22,14 +22,13 @@
     "test:typescript": "tsc"
   },
   "dependencies": {
-    "@react-spring/web": "9.2.3",
-    "history": "5.0.0",
-    "nanoid": "3.1.23",
+    "history": "5.0.1",
     "react": "17.0.2",
     "react-dom": "17.0.2",
+    "react-hot-toast": "^2.1.0",
     "react-router-dom": "6.0.0-beta.0",
     "styled-components": "5.3.0",
-    "workbox-window": "6.1.5"
+    "workbox-window": "6.2.4"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",
@@ -38,7 +37,7 @@
     "@snowpack/plugin-babel": "^2.1.6",
     "@snowpack/plugin-react-refresh": "^2.4.0",
     "@testing-library/react": "^12.0.0",
-    "@types/jest": "^26.0.20",
+    "@types/jest": "^27.0.0",
     "@types/react-dom": "^17.0.0",
     "@types/styled-components": "^5.1.7",
     "@typescript-eslint/eslint-plugin": "^4.14.0",

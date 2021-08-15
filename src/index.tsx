@@ -1,8 +1,8 @@
-import App from './components/App';
-import GlobalStyles from './components/GlobalStyles';
-import Providers from './components/Providers';
+import App from '@components/App';
+import GlobalStyles from '@components/GlobalStyles';
+import Providers from '@components/Providers';
 import ReactDOM from 'react-dom';
-import SWInstaller from './components/SWInstaller';
+import SWInstaller from '@components/SWInstaller';
 
 const Root = () => (
   <Providers>

@@ -1,11 +1,7 @@
-import { NotificationProvider } from '@contexts/NotificationContext';
-
 interface ProviderProps {
   children?: React.ReactNode;
 }
 
-const Providers = ({ children }: ProviderProps) => (
-  <NotificationProvider>{children}</NotificationProvider>
-);
+const Providers = ({ children }: ProviderProps) => <>{children}</>;
 
 export default Providers;

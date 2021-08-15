@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { lazy, Suspense } from 'react';
-import Notifications from './notifications/Notifications';
+import { Toaster } from 'react-hot-toast';
 
 const Home = lazy(() => import('@pages/Home'));
 const Page404 = lazy(() => import('@pages/Page404'));
@@ -13,9 +13,11 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="*" element={<Page404 />} />
         </Routes>
-
-        <Notifications />
       </Suspense>
+
+      <div data-testid="notifications">
+        <Toaster containerStyle={{ width: '300px' }} position="bottom-left" />
+      </div>
     </BrowserRouter>
   );
 }
