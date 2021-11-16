@@ -15,8 +15,11 @@ function generateModuleNameMapper() {
 }
 
 module.exports = {
-  moduleNameMapper: generateModuleNameMapper(),
+  moduleNameMapper: {
+    ...generateModuleNameMapper(),
+  },
   preset: 'ts-jest',
+  setupFilesAfterEnv: ['./jest.setup.js'],
   testEnvironment: 'jsdom',
   testMatch: ['**/__tests__/**/*.test.ts(x)'],
 };

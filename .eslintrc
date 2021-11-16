@@ -4,8 +4,7 @@
   },
 
   "extends": [
-    "airbnb",
-    "airbnb-typescript",
+    "plugin:@typescript-eslint/recommended",
     "prettier"
   ],
 
@@ -52,6 +51,7 @@
   ],
 
   "rules": {
+    "@typescript-eslint/explicit-module-boundary-types": "off",
     "@typescript-eslint/indent": "off",
     "@typescript-eslint/lines-between-class-members": "off",
     "func-names": ["error", "as-needed"],
@@ -68,7 +68,6 @@
     "react/require-default-props": "off",
     "react-hooks/exhaustive-deps": "error",
     "react-hooks/rules-of-hooks": "error",
-
     "sort-imports-es6-autofix/sort-imports-es6": ["error", {
       "ignoreCase": true,
       "ignoreMemberSort": false,
