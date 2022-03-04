@@ -1,12 +1,48 @@
-const spacings: { [x: number]: string } = {
-  0: '0',
-  1: '.25rem',
-  2: '.5rem',
-  3: '1rem',
-  4: '1.5rem',
+// Inspired by https://github.com/mui-org/material-ui
+interface SpacingProps {
+  /** Add margin in every direction */
+  m?: string;
+  /** Add margin to the bottom */
+  mb?: string;
+  /** Add margin to the left */
+  ml?: string;
+  /** Add margin to the right */
+  mr?: string;
+  /** Add margin to the top */
+  mt?: string;
+  /** Add margin to the left and right */
+  mx?: string;
+  /** Add margin to the top and bottom */
+  my?: string;
+  /** Add padding in every direction */
+  p?: string;
+  /** Add padding to the bottom */
+  pb?: string;
+  /** Add padding to the left */
+  pl?: string;
+  /** Add padding to the right */
+  pr?: string;
+  /** Add padding to the top */
+  pt?: string;
+  /** Add padding to the left and right */
+  px?: string;
+  /** Add padding to the top and bottom */
+  py?: string;
+}
+
+type SpacingKeys = keyof SpacingProps;
+type SpacingValues = 'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+
+const spacings: Record<SpacingValues, string> = {
+  none: '0',
+  xs: '4px',
+  sm: '8px',
+  md: '12px',
+  lg: '16px',
+  xl: '24px',
 };
 
-const spacingKeys: { [x: string]: string | string[] } = {
+const spacingKeys: Record<SpacingKeys, string | string[]> = {
   m: 'margin',
   mb: 'margin-bottom',
   ml: 'margin-left',
@@ -23,10 +59,10 @@ const spacingKeys: { [x: string]: string | string[] } = {
   py: ['padding-bottom', 'padding-top'],
 };
 
-function spacing(props: any) {
-  return Object.entries(props)
-    .map(([prop, value]: [string, unknown]) => {
-      const spacingProp = spacingKeys[prop];
+function spacing(props: unknown) {
+  return Object.entries(props as Record<string, unknown>)
+    .map(([prop, value]) => {
+      const spacingProp = spacingKeys[prop as SpacingKeys];
 
       if (!spacingProp) {
         return null;
@@ -34,8 +70,8 @@ function spacing(props: any) {
 
       const cssProperties = Array.isArray(spacingProp) ? spacingProp : [spacingProp];
 
-      return cssProperties.reduce<{ [x: string]: string }>((acc, cssProp) => {
-        const val = typeof value === 'number' ? spacings[value] : value;
+      return cssProperties.reduce<Record<string, string>>((acc, cssProp) => {
+        const val = spacings[value as SpacingValues] || value;
 
         acc[cssProp] = val as string;
 
@@ -51,27 +87,5 @@ function spacing(props: any) {
     );
 }
 
-type SpacingValues = 0 | 1 | 2 | 3 | 4;
-
-type SpacingKeys =
-  | 'm'
-  | 'mb'
-  | 'ml'
-  | 'mr'
-  | 'mt'
-  | 'mx'
-  | 'my'
-  | 'p'
-  | 'pb'
-  | 'pl'
-  | 'pr'
-  | 'pt'
-  | 'px'
-  | 'py';
-
-type SpacingProps = {
-  [x in SpacingKeys]?: string | SpacingValues;
-};
-
 export default spacing;
-export { SpacingProps };
+export type { SpacingProps };

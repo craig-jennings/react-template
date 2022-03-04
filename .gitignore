@@ -1,6 +1,6 @@
 # Directories
 .vscode/
-build/
+dist/
 node_modules/
 
 # Files

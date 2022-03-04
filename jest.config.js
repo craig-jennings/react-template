@@ -1,25 +1,14 @@
-const tsConfig = require('./tsconfig.json');
-
-function generateModuleNameMapper() {
-  const { paths } = tsConfig.compilerOptions;
-  const aliases = {};
-
-  Object.entries(paths).forEach(([key, value]) => {
-    const alias = key.replace('/*', '/(.*)');
-    const path = value[0].replace('/*', '/$1').replace('./', '<rootDir>/');
-
-    aliases[alias] = path;
-  });
-
-  return aliases;
-}
+const path = require('path'); // eslint-disable-line @typescript-eslint/no-var-requires
 
 module.exports = {
+  moduleDirectories: ['node_modules', path.join(__dirname, './src')],
   moduleNameMapper: {
-    ...generateModuleNameMapper(),
+    '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':
+      require.resolve('./src/test/file-mock.js'),
   },
   preset: 'ts-jest',
-  setupFilesAfterEnv: ['./jest.setup.js'],
+  rootDir: '.',
+  setupFilesAfterEnv: ['./src/test/setup.js'],
   testEnvironment: 'jsdom',
-  testMatch: ['**/__tests__/**/*.test.ts(x)'],
+  testMatch: ['**/*.test.ts(x)?'],
 };

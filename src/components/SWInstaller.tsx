@@ -1,11 +1,11 @@
-import { addToast } from '@utils/toaster';
+import { addToast } from 'utils/toaster';
 import { useEffect } from 'react';
 import { Workbox } from 'workbox-window';
 import SWUpdate from './notifications/types/SWUpdate';
 
 function SWInstaller() {
   useEffect(() => {
-    if (process.env.NODE_ENV !== 'production') return;
+    if (import.meta.env.NODE_ENV !== 'production') return;
 
     if ('serviceWorker' in navigator) {
       const wb = new Workbox('/sw.js');

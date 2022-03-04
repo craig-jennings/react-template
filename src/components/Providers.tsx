@@ -1,7 +1,3 @@
-interface ProviderProps {
-  children?: React.ReactNode;
-}
-
-const Providers = ({ children }: ProviderProps) => <>{children}</>;
+const Providers = ({ children }: OnlyChildrenProps) => <>{children}</>;
 
 export default Providers;

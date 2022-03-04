@@ -2,16 +2,16 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { lazy, Suspense } from 'react';
 import { Toaster } from 'react-hot-toast';
 
-const Home = lazy(() => import('@pages/Home'));
-const Page404 = lazy(() => import('@pages/Page404'));
+const Home = lazy(() => import('pages/Home'));
+const Page404 = lazy(() => import('pages/Page404'));
 
 function App() {
   return (
     <BrowserRouter>
       <Suspense fallback={<div>Loading</div>}>
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="*" element={<Page404 />} />
+          <Route element={<Home />} path="/" />
+          <Route element={<Page404 />} path="*" />
         </Routes>
       </Suspense>
 

@@ -1,4 +1,4 @@
-import { FlexBox } from '@common/Box';
+import { FlexBox } from 'components/common/Box';
 import styled from 'styled-components';
 
 const NotificationContainer = styled(FlexBox).attrs(() => ({

@@ -1,9 +1,9 @@
-import { addToast } from '@utils/toaster';
-import { Button } from '@common/Buttons';
-import { CenterBox, FlexBox, InlineBox } from '@common/Box';
+import { addToast } from 'utils/toaster';
+import { Button } from 'components/common/Buttons';
+import { CenterBox, FlexBox, InlineBox } from 'components/common/Box';
 import { Link } from 'react-router-dom';
-import StandardNotification from '@components/notifications/StandardNotification';
-import SWUpdate from '@components/notifications/types/SWUpdate';
+import StandardNotification from 'components/notifications/StandardNotification';
+import SWUpdate from 'components/notifications/types/SWUpdate';
 
 function Home() {
   /* -- Hooks -- */
@@ -17,7 +17,14 @@ function Home() {
   };
 
   const handleServiceWorkerClick = () => {
-    addToast(<SWUpdate onUpdateClick={() => {}} />, { isDismissable: false });
+    addToast(
+      <SWUpdate
+        onUpdateClick={() => {
+          console.log('updated');
+        }}
+      />,
+      { isDismissable: false },
+    );
   };
 
   /* -- Rendering -- */
@@ -26,11 +33,11 @@ function Home() {
       <div>Howdy React Template!</div>
 
       <div>
-        <InlineBox mr={2}>
+        <InlineBox mr="md">
           <Button onClick={handleSuccessClick}>Success</Button>
         </InlineBox>
 
-        <InlineBox mr={2}>
+        <InlineBox mr="md">
           <Button onClick={handleErrorClick}>Error</Button>
         </InlineBox>
 

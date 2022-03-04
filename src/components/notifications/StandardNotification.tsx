@@ -32,11 +32,8 @@ interface StandardNotificationProps {
   variant?: 'error' | 'success';
 }
 
-const StandardNotification = ({
-  children,
-  variant,
-}: PropsWithChildren<StandardNotificationProps>) => (
-  <Container alignItems="center" justifyContent="space-between" px={3} variant={variant}>
+const StandardNotification = ({ children, variant }: PropsWithChildren<StandardNotificationProps>) => (
+  <Container alignItems="center" justifyContent="space-between" px="lg" variant={variant}>
     {children}
   </Container>
 );

@@ -1,26 +1,17 @@
 {
   "compilerOptions": {
     "allowSyntheticDefaultImports": true,
+    "baseUrl": "./src",
     "forceConsistentCasingInFileNames": true,
+    "isolatedModules": true,
     "jsx": "react-jsx",
     "module": "esnext",
     "moduleResolution": "node",
     "noEmit": true,
     "noImplicitAny": true,
-
-    "paths": {
-      "@api/*": ["./src/api/*"],
-      "@common/*": ["./src/components/common/*"],
-      "@components/*": ["./src/components/*"],
-      "@contexts/*": ["./src/contexts/*"],
-      "@hooks/*": ["./src/hooks/*"],
-      "@pages/*": ["./src/pages/*"],
-      "@test/*": ["./src/test/*"],
-      "@utils/*": ["./src/utils/*"]
-    },
-
     "skipLibCheck": true,
     "strict": true,
-    "target": "es2018"
+    "target": "es2018",
+    "types": ["vite/client", "jest", "@testing-library/jest-dom"]
   }
 }

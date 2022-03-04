@@ -1,8 +1,13 @@
-type PositionProps = 'static' | 'relative' | 'absolute' | 'sticky' | 'fixed';
+type Position = 'static' | 'relative' | 'absolute' | 'sticky' | 'fixed';
 
-function positionMixin({ position }: { position?: PositionProps }) {
+interface PositionProps {
+  /** Sets the position of the component */
+  position?: Position;
+}
+
+function positionMixin({ position }: { position?: Position }) {
   return position && { position };
 }
 
 export default positionMixin;
-export { PositionProps };
+export type { PositionProps };

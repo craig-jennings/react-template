@@ -1,43 +1,33 @@
-/* eslint-disable import/no-extraneous-dependencies */
-import path from 'path';
-import reactRefresh from '@vitejs/plugin-react-refresh';
-import tsConfig from './tsconfig.json';
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+import tsconfigPaths from 'vite-tsconfig-paths';
 
-function generateAliases() {
-  const { paths } = tsConfig.compilerOptions;
-  const aliases = {};
-
-  Object.entries(paths).forEach(([key, value]) => {
-    const alias = key.replace('/*', '');
-    const filepath = value[0].replace('/*', '');
-
-    aliases[alias] = path.resolve(__dirname, filepath);
-  });
-
-  return aliases;
-}
+const isDev = process.env.NODE_ENV !== 'production';
+const isRelease = process.env.RELEASE === 'true';
 
 /**
  * @type {import('vite').UserConfig}
  */
-export default {
+export default defineConfig({
   build: {
-    outDir: 'build',
     polyfillDynamicImport: false,
     target: 'es2018',
   },
 
-  esbuild: {
-    jsxInject: `import React from 'react'`,
-  },
+  plugins: [
+    react({
+      babel: {
+        plugins: [
+          isDev && ['babel-plugin-styled-components', { fileName: false }],
+          isRelease && ['react-remove-properties', { properties: ['data-testid'] }],
+        ].filter(Boolean),
+      },
+    }),
 
-  plugins: [reactRefresh()],
-
-  resolve: {
-    alias: generateAliases(),
-  },
+    tsconfigPaths(),
+  ],
 
   server: {
     host: '0.0.0.0',
   },
-};
+});

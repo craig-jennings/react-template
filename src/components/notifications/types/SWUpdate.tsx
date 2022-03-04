@@ -1,5 +1,5 @@
-import { Button } from '@common/Buttons';
-import { FlexBox } from '@common/Box';
+import { Button } from 'components/common/Buttons';
+import { FlexBox } from 'components/common/Box';
 import NotificationContainer from '../NotificationContainer';
 import styled from 'styled-components';
 
@@ -19,7 +19,7 @@ interface SWUpdateProps {
 
 function SWUpdate({ onUpdateClick }: SWUpdateProps) {
   return (
-    <Container alignItems="center" justifyContent="space-between" px={3}>
+    <Container alignItems="center" justifyContent="space-between" px="md">
       <div>Update Available</div>
 
       <FlexBox alignItems="center">

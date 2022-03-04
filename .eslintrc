@@ -1,22 +1,23 @@
 {
-  "env": {
-    "browser": true
-  },
+  "env": { "browser": true },
 
   "extends": [
     "plugin:@typescript-eslint/recommended",
+    "plugin:testing-library/react",
+    "plugin:jest-dom/recommended",
     "prettier"
   ],
 
+  "ignorePatterns": ["dist/"],
   "parser": "@typescript-eslint/parser",
 
   "parserOptions": {
-    "ecmaVersion": 2020,
-    "project": "./tsconfig.json"
+    "ecmaVersion": "latest",
+    "project": "tsconfig.json"
   },
 
   "plugins": [
-    "@typescript-eslint/eslint-plugin",
+    "@typescript-eslint",
     "import",
     "jsx-a11y",
     "prettier",
@@ -25,53 +26,40 @@
     "sort-imports-es6-autofix"
   ],
 
-  "overrides": [
-    {
-      "env": {
-        "jest": true
-      },
-
-      "files": [
-        "**/__mocks__/**/*.ts",
-        "**/__tests__/**/*.test.ts(x)"
-      ],
-
-      "rules": {
-        "import/named": "off"
-      },
-
-      "settings": {
-        "import/resolver": {
-          "jest": {
-            "jestConfigFile": "./jest.config.js"
-          }
-        }
-      }
-    }
-  ],
-
   "rules": {
+    "@typescript-eslint/ban-ts-comment": "warn",
     "@typescript-eslint/explicit-module-boundary-types": "off",
     "@typescript-eslint/indent": "off",
     "@typescript-eslint/lines-between-class-members": "off",
+    "@typescript-eslint/no-explicit-any": "error",
+    "@typescript-eslint/no-non-null-assertion": "error",
+    "@typescript-eslint/no-shadow": "error",
+    "@typescript-eslint/no-unused-vars": "error",
     "func-names": ["error", "as-needed"],
     "import/first": "error",
     "import/order": "off",
     "import/prefer-default-export": "off",
     "no-plusplus": "off",
+    "no-shadow": "off",
     "no-void": "off",
     "object-curly-newline": ["error", { "consistent": true }],
+    "object-shorthand": "error",
     "prettier/prettier": "error",
-    "react/jsx-one-expression-per-line": "off",
-    "react/jsx-props-no-spreading": "off",
-    "react/react-in-jsx-scope": "off",
-    "react/require-default-props": "off",
     "react-hooks/exhaustive-deps": "error",
     "react-hooks/rules-of-hooks": "error",
-    "sort-imports-es6-autofix/sort-imports-es6": ["error", {
-      "ignoreCase": true,
-      "ignoreMemberSort": false,
-      "memberSyntaxSortOrder": ["none", "all", "multiple", "single"]
-    }]
+    "react/jsx-boolean-value": "error",
+    "react/jsx-one-expression-per-line": "off",
+    "react/jsx-props-no-spreading": "off",
+    "react/jsx-sort-props": "error",
+    "react/react-in-jsx-scope": "off",
+    "react/require-default-props": "off",
+    "sort-imports-es6-autofix/sort-imports-es6": [
+      "error",
+      {
+        "ignoreCase": true,
+        "ignoreMemberSort": false,
+        "memberSyntaxSortOrder": ["none", "all", "multiple", "single"]
+      }
+    ]
   }
 }

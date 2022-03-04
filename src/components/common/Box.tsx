@@ -1,17 +1,11 @@
-import display, { DisplayProps } from './mixins/display';
 import flex, { FlexProps } from './mixins/flex';
 import position, { PositionProps } from './mixins/position';
 import spacing, { SpacingProps } from './mixins/spacing';
 import styled from 'styled-components';
 
-type BoxProps = {
-  displayRaw?: DisplayProps;
-  position?: PositionProps;
-} & FlexProps &
-  SpacingProps;
+type BoxProps = PositionProps & SpacingProps & FlexProps;
 
 const Box = styled.div<BoxProps>`
-  ${display}
   ${flex}
   ${position}
   ${spacing}
@@ -32,4 +26,5 @@ const CenterBox = styled(FlexBox)`
   justify-content: center;
 `;
 
-export { Box, BoxProps, CenterBox, FlexBox, InlineBox, InlineFlexBox };
+export { Box, CenterBox, FlexBox, InlineBox, InlineFlexBox };
+export type { BoxProps };

@@ -18,6 +18,7 @@ type AlignContent =
 type AlignItems =
   | 'normal'
   | 'stretch'
+
   /* Positional alignment */
   | 'center'
   | 'start'
@@ -40,6 +41,7 @@ type JustifyContent =
   | 'flex-end'
   | 'left'
   | 'right'
+
   /* Distributed alignment */
   | 'space-between'
   | 'space-around'
@@ -48,26 +50,27 @@ type JustifyContent =
   | GlobalValues;
 
 interface FlexProps {
+  /** Sets align-content on the component */
   alignContent?: AlignContent;
+  /** Sets align-items on the component */
   alignItems?: AlignItems;
+  /** Sets flex value on the component */
   flex?: string;
+  /** Sets flex-direction on the component */
   flexDirection?: FlexDirection;
+  /** Sets flex-wrap on the component */
   flexWrap?: FlexWrap;
+  /** Sets the gap on the component */
+  gap?: string;
+  /** Sets justify-content on the component */
   justifyContent?: JustifyContent;
 }
 
-const flexKeys = [
-  'alignContent',
-  'alignItems',
-  'flex',
-  'flexDirection',
-  'flexWrap',
-  'justifyContent',
-];
+const flexKeys = ['alignContent', 'alignItems', 'flex', 'flexDirection', 'flexWrap', 'gap', 'justifyContent'];
 
-function flex(props: any): { [x: string]: any } | null {
-  return Object.entries(props)
-    .map(([prop, value]) => (flexKeys.indexOf(prop) > -1 ? { [prop]: value } : null))
+function flex(props: unknown): Record<string, string> | null {
+  return Object.entries(props as Record<string, unknown>)
+    .map(([prop, value]) => (flexKeys.includes(prop) ? { [prop]: value as string } : null))
     .reduce(
       (acc, currentValue) => ({
         ...acc,
@@ -78,4 +81,4 @@ function flex(props: any): { [x: string]: any } | null {
 }
 
 export default flex;
-export { FlexProps };
+export type { FlexProps };
