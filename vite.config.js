@@ -3,7 +3,6 @@ import react from '@vitejs/plugin-react';
 import tsconfigPaths from 'vite-tsconfig-paths';
 
 const isDev = process.env.NODE_ENV !== 'production';
-const isRelease = process.env.RELEASE === 'true';
 
 /**
  * @type {import('vite').UserConfig}
@@ -18,8 +17,8 @@ export default defineConfig({
     react({
       babel: {
         plugins: [
+          ['react-remove-properties', { properties: ['data-testid'] }],
           isDev && ['babel-plugin-styled-components', { fileName: false }],
-          isRelease && ['react-remove-properties', { properties: ['data-testid'] }],
         ].filter(Boolean),
       },
     }),

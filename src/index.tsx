@@ -1,7 +1,7 @@
+import { createRoot } from 'react-dom/client';
 import App from 'components/App';
 import GlobalStyles from 'components/GlobalStyles';
 import Providers from 'components/Providers';
-import ReactDOM from 'react-dom';
 import SWInstaller from 'components/SWInstaller';
 
 const Root = () => (
@@ -12,4 +12,12 @@ const Root = () => (
   </Providers>
 );
 
-ReactDOM.render(<Root />, document.querySelector('main'));
+const container = document.querySelector('main');
+
+if (!container) {
+  throw new Error('Missing root DOM element');
+}
+
+const root = createRoot(container);
+
+root.render(<Root />);
