@@ -8,7 +8,7 @@ module.exports = {
   },
   preset: 'ts-jest',
   rootDir: '.',
-  setupFilesAfterEnv: ['./src/test/setup.js'],
+  setupFilesAfterEnv: ['<rootDir>/src/test/setup.ts'],
   testEnvironment: 'jsdom',
   testMatch: ['**/*.test.ts(x)?'],
 };
