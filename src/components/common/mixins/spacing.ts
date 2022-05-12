@@ -1,33 +1,35 @@
+import mq from 'utils/mediaQueries';
+
 // Inspired by https://github.com/mui-org/material-ui
 interface SpacingProps {
   /** Add margin in every direction */
-  m?: string;
+  m?: string | string[];
   /** Add margin to the bottom */
-  mb?: string;
+  mb?: string | string[];
   /** Add margin to the left */
-  ml?: string;
+  ml?: string | string[];
   /** Add margin to the right */
-  mr?: string;
+  mr?: string | string[];
   /** Add margin to the top */
-  mt?: string;
+  mt?: string | string[];
   /** Add margin to the left and right */
-  mx?: string;
+  mx?: string | string[];
   /** Add margin to the top and bottom */
-  my?: string;
+  my?: string | string[];
   /** Add padding in every direction */
-  p?: string;
+  p?: string | string[];
   /** Add padding to the bottom */
-  pb?: string;
+  pb?: string | string[];
   /** Add padding to the left */
-  pl?: string;
+  pl?: string | string[];
   /** Add padding to the right */
-  pr?: string;
+  pr?: string | string[];
   /** Add padding to the top */
-  pt?: string;
+  pt?: string | string[];
   /** Add padding to the left and right */
-  px?: string;
+  px?: string | string[];
   /** Add padding to the top and bottom */
-  py?: string;
+  py?: string | string[];
 }
 
 type SpacingKeys = keyof SpacingProps;
@@ -60,31 +62,24 @@ const spacingKeys: Record<SpacingKeys, string | string[]> = {
 };
 
 function spacing(props: unknown) {
-  return Object.entries(props as Record<string, unknown>)
-    .map(([prop, value]) => {
-      const spacingProp = spacingKeys[prop as SpacingKeys];
+  return Object.entries(props as Record<string, unknown>).map(([prop, value]) => {
+    const spacingProp = spacingKeys[prop as SpacingKeys];
 
-      if (!spacingProp) {
-        return null;
-      }
+    if (!spacingProp) {
+      return null;
+    }
 
-      const cssProperties = Array.isArray(spacingProp) ? spacingProp : [spacingProp];
+    const cssProperties = Array.isArray(spacingProp) ? spacingProp : [spacingProp];
 
-      return cssProperties.reduce<Record<string, string>>((acc, cssProp) => {
-        const val = spacings[value as SpacingValues] || value;
+    return cssProperties.reduce<Record<string, string | { [key: string]: string | number }>>((acc, cssProp) => {
+      const arrayValue = Array.isArray(value) ? value : [value];
 
-        acc[cssProp] = val as string;
-
-        return acc;
-      }, {});
-    })
-    .reduce(
-      (acc, currentValue) => ({
+      return {
         ...acc,
-        ...currentValue,
-      }),
-      {},
-    );
+        ...mq({ [cssProp]: arrayValue.map((v) => spacings[v as SpacingValues] || (v as string)) })[0],
+      };
+    }, {});
+  });
 }
 
 export default spacing;
