@@ -1,7 +1,10 @@
 # Directories
-.vscode/
-dist/
-node_modules/
+/.vscode/
+/dist/
+/node_modules/
+/playwright-report/
+/playwright/.cache/
+/test-results/
 
 # Files
 *-debug.log

@@ -1,8 +1,8 @@
-import { render, screen } from 'test/utils';
+import { expect, test } from '@playwright/experimental-ct-react';
 import Page404 from './Page404';
 
-it('shows the 404 page', () => {
-  render(<Page404 />);
+test('shows the 404 page', async ({ mount }) => {
+  const component = await mount(<Page404 />);
 
-  expect(screen.getByText('You lost?')).toBeInTheDocument();
+  await expect(component).toContainText('You lost?');
 });

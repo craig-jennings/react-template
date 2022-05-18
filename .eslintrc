@@ -1,13 +1,6 @@
 {
   "env": { "browser": true },
-
-  "extends": [
-    "plugin:@typescript-eslint/recommended",
-    "plugin:testing-library/react",
-    "plugin:jest-dom/recommended",
-    "prettier"
-  ],
-
+  "extends": ["plugin:@typescript-eslint/recommended", "prettier"],
   "ignorePatterns": ["dist/"],
   "parser": "@typescript-eslint/parser",
 
