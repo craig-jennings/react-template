@@ -1,35 +1,40 @@
-import mq from 'utils/mediaQueries';
+import mq, { type MediaQueryValues } from 'utils/mediaQueries';
 
-// Inspired by https://github.com/mui-org/material-ui
+/**
+ * Determines value or responsive values applied to a given spacing rule. When passing an array, the first value is the
+ * default value, then the proceeding values are mapped according to facepaint's media query rules
+ */
+type SpacingPropType = string | MediaQueryValues;
+
 interface SpacingProps {
   /** Add margin in every direction */
-  m?: string | string[];
+  m?: SpacingPropType;
   /** Add margin to the bottom */
-  mb?: string | string[];
+  mb?: SpacingPropType;
   /** Add margin to the left */
-  ml?: string | string[];
+  ml?: SpacingPropType;
   /** Add margin to the right */
-  mr?: string | string[];
+  mr?: SpacingPropType;
   /** Add margin to the top */
-  mt?: string | string[];
+  mt?: SpacingPropType;
   /** Add margin to the left and right */
-  mx?: string | string[];
+  mx?: SpacingPropType;
   /** Add margin to the top and bottom */
-  my?: string | string[];
+  my?: SpacingPropType;
   /** Add padding in every direction */
-  p?: string | string[];
+  p?: SpacingPropType;
   /** Add padding to the bottom */
-  pb?: string | string[];
+  pb?: SpacingPropType;
   /** Add padding to the left */
-  pl?: string | string[];
+  pl?: SpacingPropType;
   /** Add padding to the right */
-  pr?: string | string[];
+  pr?: SpacingPropType;
   /** Add padding to the top */
-  pt?: string | string[];
+  pt?: SpacingPropType;
   /** Add padding to the left and right */
-  px?: string | string[];
+  px?: SpacingPropType;
   /** Add padding to the top and bottom */
-  py?: string | string[];
+  py?: SpacingPropType;
 }
 
 type SpacingKeys = keyof SpacingProps;

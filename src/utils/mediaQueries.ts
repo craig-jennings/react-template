@@ -11,5 +11,7 @@ const mq = facepaint([
   `@media only screen and (min-width: ${breakpoints.lg})`,
 ]);
 
+type MediaQueryValues = [string | null, (string | null)?, (string | null)?];
+
 export default mq;
-export { breakpoints };
+export { breakpoints, type MediaQueryValues };

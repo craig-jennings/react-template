@@ -1,5 +1,7 @@
+import { Box } from 'components/common/Box';
+
 function Page404() {
-  return <div>You lost?</div>;
+  return <Box>You lost?</Box>;
 }
 
 export default Page404;
