@@ -1,4 +1,6 @@
 import { devices, type PlaywrightTestConfig } from '@playwright/experimental-ct-react';
+import react from '@vitejs/plugin-react';
+import tsconfigPaths from 'vite-tsconfig-paths';
 
 const config: PlaywrightTestConfig = {
   forbidOnly: !!process.env.CI,
@@ -32,8 +34,18 @@ const config: PlaywrightTestConfig = {
   timeout: 10 * 1000,
 
   use: {
-    trace: 'on-first-retry',
     ctPort: 3100,
+
+    ctViteConfig: {
+      plugins: [
+        react({
+          babel: {},
+        }),
+        tsconfigPaths(),
+      ],
+    },
+
+    trace: 'on-first-retry',
   },
 
   workers: process.env.CI ? 1 : undefined,

@@ -60,13 +60,11 @@ interface FlexProps {
   flexDirection?: FlexDirection;
   /** Sets flex-wrap on the component */
   flexWrap?: FlexWrap;
-  /** Sets the gap on the component */
-  gap?: string;
   /** Sets justify-content on the component */
   justifyContent?: JustifyContent;
 }
 
-const flexKeys = ['alignContent', 'alignItems', 'flex', 'flexDirection', 'flexWrap', 'gap', 'justifyContent'];
+const flexKeys = ['alignContent', 'alignItems', 'flex', 'flexDirection', 'flexWrap', 'justifyContent'];
 
 function flex(props: unknown): Record<string, string> | null {
   return Object.entries(props as Record<string, unknown>)

@@ -14,9 +14,11 @@ const Box = styled.div<BoxProps>`
 const FlexBox = styled(Box)`
   display: flex;
 `;
+
 const InlineBox = styled(Box)`
   display: inline-block;
 `;
+
 const InlineFlexBox = styled(Box)`
   display: inline-flex;
 `;

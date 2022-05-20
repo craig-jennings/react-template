@@ -7,6 +7,8 @@ import mq, { type MediaQueryValues } from 'utils/mediaQueries';
 type SpacingPropType = string | MediaQueryValues;
 
 interface SpacingProps {
+  /** Sets the gap on the component */
+  gap?: SpacingPropType;
   /** Add margin in every direction */
   m?: SpacingPropType;
   /** Add margin to the bottom */
@@ -50,6 +52,7 @@ const spacings: Record<SpacingValues, string> = {
 };
 
 const spacingKeys: Record<SpacingKeys, string | string[]> = {
+  gap: 'gap',
   m: 'margin',
   mb: 'margin-bottom',
   ml: 'margin-left',

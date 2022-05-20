@@ -1,23 +1,14 @@
 import { createRoot } from 'react-dom/client';
 import App from 'components/App';
-import GlobalStyles from 'components/GlobalStyles';
-import Providers from 'components/Providers';
-import SWInstaller from 'components/SWInstaller';
 
-const Root = () => (
-  <Providers>
-    <GlobalStyles />
-    <App />
-    <SWInstaller />
-  </Providers>
-);
-
-const container = document.querySelector('main');
+let container = document.getElementById('root');
 
 if (!container) {
-  throw new Error('Missing root DOM element');
+  container = document.createElement('div');
+  container.id = 'root';
+  document.body.prepend(container);
 }
 
 const root = createRoot(container);
 
-root.render(<Root />);
+root.render(<App />);
