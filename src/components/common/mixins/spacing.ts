@@ -1,3 +1,4 @@
+import extend from 'just-extend';
 import mq, { type MediaQueryValues } from 'utils/mediaQueries';
 
 /**
@@ -82,10 +83,9 @@ function spacing(props: unknown) {
     return cssProperties.reduce<Record<string, string | { [key: string]: string | number }>>((acc, cssProp) => {
       const arrayValue = Array.isArray(value) ? value : [value];
 
-      return {
-        ...acc,
-        ...mq({ [cssProp]: arrayValue.map((v) => spacings[v as SpacingValues] || (v as string)) })[0],
-      };
+      const result = mq({ [cssProp]: arrayValue.map((v) => spacings[v as SpacingValues] || (v as string)) })[0];
+
+      return extend(true, acc, result) as Record<string, string | { [key: string]: string | number }>;
     }, {});
   });
 }

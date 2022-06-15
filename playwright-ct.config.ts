@@ -27,7 +27,7 @@ const config: PlaywrightTestConfig = {
     },
   ],
 
-  reporter: 'html',
+  reporter: 'list',
   retries: process.env.CI ? 2 : 0,
   snapshotDir: './__snapshots__',
   testDir: './',
@@ -37,12 +37,7 @@ const config: PlaywrightTestConfig = {
     ctPort: 3100,
 
     ctViteConfig: {
-      plugins: [
-        react({
-          babel: {},
-        }),
-        tsconfigPaths(),
-      ],
+      plugins: [react(), tsconfigPaths()],
     },
 
     trace: 'on-first-retry',
