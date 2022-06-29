@@ -37,6 +37,7 @@ const config: PlaywrightTestConfig = {
     ctPort: 3100,
 
     ctViteConfig: {
+      // @ts-ignore
       plugins: [react(), tsconfigPaths()],
     },
 

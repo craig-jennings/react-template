@@ -1,7 +1,7 @@
 import { addToast } from 'utils/notifications';
 import { useEffect } from 'react';
 import { Workbox } from 'workbox-window';
-import SWUpdate from './Notifications/types/SWUpdate';
+import SWUpdate from './notifications/types/SWUpdate';
 
 function SWInstaller() {
   useEffect(() => {

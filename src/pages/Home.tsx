@@ -2,8 +2,8 @@ import { addToast } from 'utils/notifications';
 import { Button } from 'components/common/Buttons';
 import { CenterBox, FlexBox, InlineBox } from 'components/common/Box';
 import { Link } from 'react-router-dom';
-import StandardNotification from 'components/Notifications/StandardNotification';
-import SWUpdate from 'components/Notifications/types/SWUpdate';
+import StandardNotification from 'components/notifications/StandardNotification';
+import SWUpdate from 'components/notifications/types/SWUpdate';
 
 function Home() {
   /* -- Hooks -- */

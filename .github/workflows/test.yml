@@ -32,24 +32,36 @@ jobs:
   #       run: yarn e2e
 
   components:
-    name: Components
+    name: Component Tests
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v2
 
-      - uses: actions/cache@v2
-        id: cache
+      - uses: pnpm/action-setup@v2.2.2
         with:
-          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
-          path: '**/node_modules'
+          version: 7
 
-      - name: Install Dependencies
-        if: steps.cache.outputs.cache-hit != 'true'
-        run: yarn --frozen-lockfile
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+          cache: 'pnpm'
 
-      - name: Run Tests
-        run: yarn test:components
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Install Playwright
+        run: pnpm dlx playwright install --with-deps
+
+      - name: Run your tests
+        run: npm test
+
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v2
+        with:
+          name: playwright-report
+          path: playwright-report
 
   eslint:
     name: ESLint
@@ -57,15 +69,18 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/cache@v2
-        id: cache
-        with:
-          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
-          path: '**/node_modules'
 
-      - name: Install Dependencies
-        if: steps.cache.outputs.cache-hit != 'true'
-        run: yarn --frozen-lockfile
+      - uses: pnpm/action-setup@v2.2.2
+        with:
+          version: 7
+
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install
 
       - name: ESLint
         run: yarn test:eslint
@@ -77,15 +92,17 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - uses: actions/cache@v2
-        id: cache
+      - uses: pnpm/action-setup@v2.2.2
         with:
-          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
-          path: '**/node_modules'
+          version: 7
 
-      - name: Install Dependencies
-        if: steps.cache.outputs.cache-hit != 'true'
-        run: yarn --frozen-lockfile
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install
 
       - name: Typecheck
-        run: yarn test:typecheck
+        run: pnpm test:typecheck
