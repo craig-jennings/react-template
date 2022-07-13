@@ -9,42 +9,20 @@ on:
       - master
 
 jobs:
-  # e2e:
-  #   name: E2E Tests
-  #   runs-on: ubuntu-latest
-
-  #   steps:
-  #     - uses: actions/checkout@v2
-  #     - uses: actions/cache@v2
-  #       id: cache
-  #       with:
-  #         key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
-  #         path: '**/node_modules'
-
-  #     - name: Install Dependencies
-  #       if: steps.cache.outputs.cache-hit != 'true'
-  #       run: yarn --frozen-lockfile
-
-  #     - name: Build
-  #       run: yarn build
-
-  #     - name: E2E Tests
-  #       run: yarn e2e
-
   components:
     name: Component Tests
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - uses: pnpm/action-setup@v2.2.2
         with:
           version: 7
 
-      - uses: actions/setup-node@v2
+      - uses: actions/setup-node@v3
         with:
-          node-version: '16'
+          node-version: 16
           cache: 'pnpm'
 
       - name: Install dependencies
@@ -53,11 +31,11 @@ jobs:
       - name: Install Playwright
         run: pnpm dlx playwright install --with-deps
 
-      - name: Run your tests
-        run: npm test
+      - name: Run Tests
+        run: pnpm test:ct
 
       - name: Upload test results
-        if: always()
+        if: failure()
         uses: actions/upload-artifact@v2
         with:
           name: playwright-report
@@ -68,37 +46,37 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - uses: pnpm/action-setup@v2.2.2
         with:
           version: 7
 
-      - uses: actions/setup-node@v2
+      - uses: actions/setup-node@v3
         with:
-          node-version: '16'
+          node-version: 16
           cache: 'pnpm'
 
       - name: Install dependencies
         run: pnpm install
 
       - name: ESLint
-        run: yarn test:eslint
+        run: pnpm test:eslint
 
   typecheck:
     name: Type Checking
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - uses: pnpm/action-setup@v2.2.2
         with:
           version: 7
 
-      - uses: actions/setup-node@v2
+      - uses: actions/setup-node@v3
         with:
-          node-version: '16'
+          node-version: 16
           cache: 'pnpm'
 
       - name: Install dependencies
